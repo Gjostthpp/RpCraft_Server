@@ -1,0 +1,163 @@
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RpCraft - Servidor Minecraft</title>
+
+<!-- Fonte estilo Minecraft -->
+<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Minecraft', sans-serif;
+        background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmyXTRk5sWr2J6peeSPymyjGK1lkN74Yu9fp7dd7Rd0YVHeQ4U62bI-fI&s=10') repeat;
+        background-size: 64px 64px;
+        color: white;
+    }
+
+    /* Cabeçalho */
+    header {
+        text-align: center;
+        padding: 20px;
+        animation: fadeIn 1s ease-in-out;
+    }
+    header img {
+        max-width: 180px;
+        transition: transform 0.3s ease;
+    }
+    header img:hover {
+        transform: scale(1.05) rotate(-2deg);
+    }
+    h1 {
+        font-size: 2.5em;
+        color: #FFD700;
+        text-shadow: 3px 3px #000;
+        margin: 5px 0;
+    }
+    .nametag {
+        font-size: 1.5em;
+        color: #00FF00;
+        text-shadow: 2px 2px #000;
+        margin-top: 5px;
+        animation: glow 1.5s infinite alternate;
+    }
+
+    /* Carrossel */
+    .carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 15px;
+        padding: 20px;
+    }
+    .carousel img {
+        flex: 0 0 auto;
+        width: 90%;
+        max-width: 450px;
+        border: 4px solid #000;
+        scroll-snap-align: center;
+        border-radius: 10px;
+        transition: transform 0.3s;
+    }
+    .carousel img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Caixa de informações */
+    .info {
+        background: rgba(0,0,0,0.75);
+        padding: 20px;
+        margin: 20px;
+        border-radius: 12px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        animation: slideUp 1s ease-in-out;
+    }
+    .info h2 {
+        color: #FFD700;
+        margin-bottom: 10px;
+    }
+
+    /* Botão WhatsApp */
+    .whatsapp-btn {
+        display: block;
+        text-align: center;
+        background: #25D366;
+        color: white;
+        padding: 15px;
+        margin: 20px auto;
+        width: 250px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 1.2em;
+        box-shadow: 3px 3px #000;
+        transition: transform 0.2s, background 0.2s;
+    }
+    .whatsapp-btn:hover {
+        transform: scale(1.05);
+        background: #20b858;
+    }
+
+    /* Animações */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(50px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 5px #0f0; }
+        to { text-shadow: 0 0 20px #0f0; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <!-- Logo -->
+    <img src="logo.png" alt="RpCraft Logo">
+    <h1>RpCraft</h1>
+    <div class="nametag">GhostHCK226</div>
+</header>
+
+<!-- Carrossel -->
+<section class="carousel">
+    <img src="imagem1.png" alt="Imagem 1">
+    <img src="imagem2.png" alt="Imagem 2">
+    <img src="imagem3.png" alt="Imagem 3">
+</section>
+
+<!-- Informações -->
+<section class="info">
+    <h2>Sobre o Servidor</h2>
+    <p>O <strong>RpCraft</strong> é um servidor de Minecraft Bedrock Edition focado em <strong>economia e trabalhos</strong>.  
+    Aqui, você pode criar o seu próprio negócio de vendas para gerar lucro e competir com outros jogadores.</p>
+
+    <p>Nosso servidor conta com <strong>addons exclusivos</strong> para facilitar o progresso dos jogadores e proteger suas bases.  
+    Utilizamos um sistema de proteção chamado <strong>Claim</strong>, usando bandeiras azuis que protegem um espaço de 16x16 blocos.  
+    Assim, sua construção fica segura contra invasores sem permissão.</p>
+</section>
+
+<!-- Botão WhatsApp -->
+<a href="https://chat.whatsapp.com/DVsH2ijmag4ES6oGihTRL0?mode=ac_t" class="whatsapp-btn" target="_blank">
+    Entrar no Grupo do WhatsApp
+</a>
+
+<script>
+    // Carrossel automático com loop
+    const carousel = document.querySelector('.carousel');
+    setInterval(() => {
+        if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth) {
+            carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            carousel.scrollBy({ left: 300, behavior: 'smooth' });
+        }
+    }, 3000);
+</script>
+
+</body>
+</html>
