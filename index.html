@@ -1,162 +1,192 @@
-</html>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RpCraft - Servidor Minecraft</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RPCRAFT - Servidor Minecraft</title>
 
 <!-- Fonte estilo Minecraft -->
-<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet" />
 
 <style>
-    body {
-        margin: 0;
-        font-family: 'Minecraft', sans-serif;
-        background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmyXTRk5sWr2J6peeSPymyjGK1lkN74Yu9fp7dd7Rd0YVHeQ4U62bI-fI&s=10') repeat;
-        background-size: 64px 64px;
-        color: white;
-    }
+  :root{
+    --glass: rgba(10,10,10,.55);
+    --accent: #3aa63a;
+    --accent-2:#2e7a2e;
+    --text:#f5f5f5;
+    --muted:#cfcfcf;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family: system-ui, Arial;
+    color:var(--text);
+    background:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmyXTRk5sWr2J6peeSPymyjGK1lkN74Yu9fp7dd7Rd0YVHeQ4U62bI-fI&s=10") no-repeat center center fixed;
+    background-size:cover;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(2px);
+    z-index:-1;
+  }
+  .container{width:min(1100px,95%);margin:0 auto;}
 
-    /* Cabeçalho */
-    header {
-        text-align: center;
-        padding: 20px;
-        animation: fadeIn 1s ease-in-out;
-    }
-    header img {
-        max-width: 180px;
-        transition: transform 0.3s ease;
-    }
-    header img:hover {
-        transform: scale(1.05) rotate(-2deg);
-    }
-    h1 {
-        font-size: 2.5em;
-        color: #FFD700;
-        text-shadow: 3px 3px #000;
-        margin: 5px 0;
-    }
-    .nametag {
-        font-size: 1.5em;
-        color: #00FF00;
-        text-shadow: 2px 2px #000;
-        margin-top: 5px;
-        animation: glow 1.5s infinite alternate;
-    }
+  /* Header */
+  header{padding:15px 0;}
+  .nav{
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:10px;
+  }
+  .logo{font-family:'Minecraft';font-size:clamp(28px,5vw,46px);color:#d0ff77;text-shadow:2px 2px 6px #000;}
+  .nav-actions{display:flex;gap:8px;flex-wrap:wrap;}
+  .btn{
+    padding:10px 16px;border-radius:8px;background:var(--accent);
+    color:white;text-decoration:none;font-weight:bold;
+    transition:.2s;
+  }
+  .btn:hover{background:var(--accent-2);}
+  .btn.ghost{background:var(--glass);border:1px solid #333;}
 
-    /* Carrossel */
-    .carousel {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        gap: 15px;
-        padding: 20px;
-    }
-    .carousel img {
-        flex: 0 0 auto;
-        width: 90%;
-        max-width: 450px;
-        border: 4px solid #000;
-        scroll-snap-align: center;
-        border-radius: 10px;
-        transition: transform 0.3s;
-    }
-    .carousel img:hover {
-        transform: scale(1.05);
-    }
+  /* Hero */
+  .hero{background:var(--glass);border-radius:12px;padding:18px;margin:12px 0;}
+  .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
+  @media(max-width:768px){.hero-inner{grid-template-columns:1fr;}}
+  .hero h1{font-family:'Minecraft';font-size:clamp(28px,6vw,52px);margin-bottom:10px;}
+  .hero p{color:var(--muted);margin-bottom:15px;}
 
-    /* Caixa de informações */
-    .info {
-        background: rgba(0,0,0,0.75);
-        padding: 20px;
-        margin: 20px;
-        border-radius: 12px;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
-        animation: slideUp 1s ease-in-out;
-    }
-    .info h2 {
-        color: #FFD700;
-        margin-bottom: 10px;
-    }
+  /* Carousel */
+  .carousel{position:relative;overflow:hidden;border-radius:12px;}
+  .slides{display:flex;transition:transform .4s;}
+  .slide{min-width:100%;height:250px;}
+  .slide img{width:100%;height:100%;object-fit:cover;}
+  .arrow{position:absolute;top:50%;transform:translateY(-50%);background:var(--glass);border-radius:50%;width:32px;height:32px;display:grid;place-items:center;cursor:pointer;}
+  .arrow.left{left:8px;} .arrow.right{right:8px;}
+  .dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+  .dot{width:10px;height:10px;border-radius:50%;background:#fff7;cursor:pointer;}
+  .dot.active{background:#fff;}
 
-    /* Botão WhatsApp */
-    .whatsapp-btn {
-        display: block;
-        text-align: center;
-        background: #25D366;
-        color: white;
-        padding: 15px;
-        margin: 20px auto;
-        width: 250px;
-        border-radius: 10px;
-        text-decoration: none;
-        font-size: 1.2em;
-        box-shadow: 3px 3px #000;
-        transition: transform 0.2s, background 0.2s;
-    }
-    .whatsapp-btn:hover {
-        transform: scale(1.05);
-        background: #20b858;
-    }
+  /* Sections */
+  section{margin:20px 0;padding:16px;border-radius:12px;background:var(--glass);}
+  h2{font-family:'Minecraft';margin-bottom:8px;}
+  ul{padding-left:20px;}
 
-    /* Animações */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes slideUp {
-        from { opacity: 0; transform: translateY(50px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes glow {
-        from { text-shadow: 0 0 5px #0f0; }
-        to { text-shadow: 0 0 20px #0f0; }
-    }
+  /* Grid de anotações */
+  .grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
+  .note{padding:12px;background:rgba(20,20,20,.7);border-radius:10px;}
+
+  footer{text-align:center;margin:30px 0;color:#ccc;font-size:.9rem;}
 </style>
 </head>
 <body>
 
-<header>
-    <!-- Logo -->
-    <img src="logo.png" alt="RpCraft Logo">
-    <h1>RpCraft</h1>
-    <div class="nametag">GhostHCK226</div>
+<header class="container">
+  <nav class="nav">
+    <div class="logo">RPCRAFT</div>
+    <div class="nav-actions">
+      <a class="btn ghost" href="#sobre">Sobre</a>
+      <a class="btn ghost" href="#regras">Regras</a>
+      <a class="btn" href="https://chat.whatsapp.com/DVsH2ijmag4ES6oGihTRL0?mode=ac_t" target="_blank">WhatsApp</a>
+    </div>
+  </nav>
 </header>
 
-<!-- Carrossel -->
-<section class="carousel">
-    <img src="imagem1.png" alt="Imagem 1">
-    <img src="imagem2.png" alt="Imagem 2">
-    <img src="imagem3.png" alt="Imagem 3">
-</section>
+<main class="container">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>Seja Bem-vindo!</h1>
+        <p>Servidor focado em diversão, contendo economia e Proteção de bases!</p>
+        <a class="btn" href="OptiFps Plus V3.zip" download>Download Textura</a>
+        <a class="btn" href="files/Texture2.mcpack" download>Download Minecraft</a>
+      </div>
+      <div class="carousel" id="carousel">
+        <div class="slides">
+          <div class="slide"><img src="imagem1.jpg"></div>
+          <div class="slide"><img src="imagem2.png"></div>
+          <div class="slide"><img src="imagem3.png"></div>
+          <div class="slide"><img src="imagem4.png"></div>
+        </div>
+        <div class="arrow left">‹</div>
+        <div class="arrow right">›</div>
+        <div class="dots"></div>
+      </div>
+    </div>
+  </section>
 
-<!-- Informações -->
-<section class="info">
+  <!-- SOBRE -->
+  <section id="sobre">
     <h2>Sobre o Servidor</h2>
-    <p>O <strong>RpCraft</strong> é um servidor de Minecraft Bedrock Edition focado em <strong>economia e trabalhos</strong>.  
-    Aqui, você pode criar o seu próprio negócio de vendas para gerar lucro e competir com outros jogadores.</p>
+    <p>Servidor RpCraft e focado em economia e trabalhos, onde os players podem criar seu próprio negócio de vendas para gerar lucru para ele. <br>
+      O Servidor contém addons para facilitar o progresso dos players e principalmente na segurança de suas base, usando uma bandeira azul chamada de Claim facilmente de ser crafitado, esse item ajuda a proteger a base do Player que a colocou no chão, Aparti dai a base do player sera protegida em um espaço de 16x16 isso ajuda a manter a segurança da base do player contra outros players que não tem permissão.</p>
+  </section>
 
-    <p>Nosso servidor conta com <strong>addons exclusivos</strong> para facilitar o progresso dos jogadores e proteger suas bases.  
-    Utilizamos um sistema de proteção chamado <strong>Claim</strong>, usando bandeiras azuis que protegem um espaço de 16x16 blocos.  
-    Assim, sua construção fica segura contra invasores sem permissão.</p>
-</section>
+  <!-- REGRAS -->
+  <section id="regras">
+    <h2>Regras do Servidor!</h2>
+    <ul>
+      <li>1. Proibido matar jogadores sem motivo.</li>
+      <li>2. Proibido invadir propriedades.</li>
+      <li>3. Caso entre em território, estará sujeito a PvP.</li>
+      <li>4. Proibido roubar itens de outros jogadores sem o consentimento do outro player. ❌</li>
+    </ul>
+  </section>
+  
+  <section id="regras">
+      <h2>Regras do Grupo!</h2>
+    <ul>
+      <li>1. Proibido Conteúdo sexual. 🔞</li>
+      <li>2. Não fala sobre política ou religião para evitar briga no grupo.</li>
+      <li>3. Proibido divulgação de links, por questão de segurança.</li>
+      <li>4. Proibido divulgação de jogos de apostas.</li>
+      <li>5. Respeite os outros participantes do grupo.</li>
+      <li>6. Proibido divulgação de Grupos alternativo.</li>
+    </ul>
+  </section>
 
-<!-- Botão WhatsApp -->
-<a href="https://chat.whatsapp.com/DVsH2ijmag4ES6oGihTRL0?mode=ac_t" class="whatsapp-btn" target="_blank">
-    Entrar no Grupo do WhatsApp
-</a>
+  <!-- ANOTAÇÕES -->
+  <section>
+    <h2>Addons</h2>
+    <div class="grid">
+      <div class="note">💰 Economy+</div>
+      <div class="note">💾 Draveta de armazenamento</div>
+      <div class="note">🌟 Essentials</div>
+      <div class="note">⚔️ Complemento de armas</div>
+      <div class="note">🌾 Farming post</div>
+      <div class="note">💻 Realm management tool</div>
+      
+    </div>
+  </section>
+</main>
+
+<footer>
+  © RPCRAFT - Servidor não afiliado à Mojang
+</footer>
 
 <script>
-    // Carrossel automático com loop
-    const carousel = document.querySelector('.carousel');
-    setInterval(() => {
-        if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth) {
-            carousel.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-            carousel.scrollBy({ left: 300, behavior: 'smooth' });
-        }
-    }, 3000);
+(function(){
+  const root=document.getElementById('carousel');
+  const track=root.querySelector('.slides');
+  const slides=[...root.querySelectorAll('.slide')];
+  const prev=root.querySelector('.arrow.left');
+  const next=root.querySelector('.arrow.right');
+  const dotsWrap=root.querySelector('.dots');
+  let idx=0;
+  slides.forEach((_,i)=>{
+    let d=document.createElement('div');
+    d.className='dot'+(i==0?' active':'');
+    d.onclick=()=>go(i);
+    dotsWrap.appendChild(d);
+  });
+  const dots=[...dotsWrap.children];
+  function go(i){
+    idx=(i+slides.length)%slides.length;
+    track.style.transform=`translateX(-${idx*100}%)`;
+    dots.forEach((d,k)=>d.classList.toggle('active',k==idx));
+  }
+  prev.onclick=()=>go(idx-1);
+  next.onclick=()=>go(idx+1);
+})();
 </script>
 
 </body>
