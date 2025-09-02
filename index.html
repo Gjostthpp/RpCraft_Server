@@ -8,74 +8,7 @@
 <!-- Fonte estilo Minecraft -->
 <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet" />
 
-<style>
-  :root{
-    --glass: rgba(10,10,10,.55);
-    --accent: #3aa63a;
-    --accent-2:#2e7a2e;
-    --text:#f5f5f5;
-    --muted:#cfcfcf;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{
-    font-family: system-ui, Arial;
-    color:var(--text);
-    background:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmyXTRk5sWr2J6peeSPymyjGK1lkN74Yu9fp7dd7Rd0YVHeQ4U62bI-fI&s=10") no-repeat center center fixed;
-    background-size:cover;
-  }
-  body::before{
-    content:"";position:fixed;inset:0;
-    background:rgba(0,0,0,.55);
-    backdrop-filter:blur(2px);
-    z-index:-1;
-  }
-  .container{width:min(1100px,95%);margin:0 auto;}
-
-  /* Header */
-  header{padding:15px 0;}
-  .nav{
-    display:flex;justify-content:space-between;align-items:center;
-    flex-wrap:wrap;gap:10px;
-  }
-  .logo{font-family:'Minecraft';font-size:clamp(28px,5vw,46px);color:#d0ff77;text-shadow:2px 2px 6px #000;}
-  .nav-actions{display:flex;gap:8px;flex-wrap:wrap;}
-  .btn{
-    padding:10px 16px;border-radius:8px;background:var(--accent);
-    color:white;text-decoration:none;font-weight:bold;
-    transition:.2s;
-  }
-  .btn:hover{background:var(--accent-2);}
-  .btn.ghost{background:var(--glass);border:1px solid #333;}
-
-  /* Hero */
-  .hero{background:var(--glass);border-radius:12px;padding:18px;margin:12px 0;}
-  .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
-  @media(max-width:768px){.hero-inner{grid-template-columns:1fr;}}
-  .hero h1{font-family:'Minecraft';font-size:clamp(28px,6vw,52px);margin-bottom:10px;}
-  .hero p{color:var(--muted);margin-bottom:15px;}
-
-  /* Carousel */
-  .carousel{position:relative;overflow:hidden;border-radius:12px;}
-  .slides{display:flex;transition:transform .4s;}
-  .slide{min-width:100%;height:250px;}
-  .slide img{width:100%;height:100%;object-fit:cover;}
-  .arrow{position:absolute;top:50%;transform:translateY(-50%);background:var(--glass);border-radius:50%;width:32px;height:32px;display:grid;place-items:center;cursor:pointer;}
-  .arrow.left{left:8px;} .arrow.right{right:8px;}
-  .dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
-  .dot{width:10px;height:10px;border-radius:50%;background:#fff7;cursor:pointer;}
-  .dot.active{background:#fff;}
-
-  /* Sections */
-  section{margin:20px 0;padding:16px;border-radius:12px;background:var(--glass);}
-  h2{font-family:'Minecraft';margin-bottom:8px;}
-  ul{padding-left:20px;}
-
-  /* Grid de anotações */
-  .grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
-  .note{padding:12px;background:rgba(20,20,20,.7);border-radius:10px;}
-
-  footer{text-align:center;margin:30px 0;color:#ccc;font-size:.9rem;}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -85,6 +18,7 @@
     <div class="nav-actions">
       <a class="btn ghost" href="#sobre">Sobre</a>
       <a class="btn ghost" href="#regras">Regras</a>
+      <a class="btn ghost" href="#download">Download mapas</a>
       <a class="btn" href="https://chat.whatsapp.com/DVsH2ijmag4ES6oGihTRL0?mode=ac_t" target="_blank">WhatsApp</a>
     </div>
   </nav>
@@ -97,8 +31,14 @@
       <div>
         <h1>Seja Bem-vindo!</h1>
         <p>Servidor focado em diversão, contendo economia e Proteção de bases!</p>
+        <h4>Texrura para celular Fraco!</h4>
+        <h4>Minecraft apk atualizado 1.21.101!</h4>
+        <br>
         <a class="btn" href="OptiFps Plus V3.zip" download>Download Textura</a>
         <a class="btn" href="https://mcpedl.org/uploads_files/13-08-2025/minecraft-1-21-101-clone-music.apk" download>Download Minecraft</a>
+        <br>
+        <br>
+        <hr>
       </div>
       <div class="carousel" id="carousel">
         <div class="slides">
@@ -106,6 +46,7 @@
           <div class="slide"><img src="imagem2.png"></div>
           <div class="slide"><img src="imagem3.png"></div>
           <div class="slide"><img src="imagem4.png"></div>
+          <div class="slide"><img src="imagem5.png"></div>
         </div>
         <div class="arrow left">‹</div>
         <div class="arrow right">›</div>
@@ -143,18 +84,22 @@
       <li>6. Proibido divulgação de Grupos alternativo.</li>
     </ul>
   </section>
-
+  <section id="download">
+    <h2>Download Dos Mapas</h2>
+    <br>
+    <a class="btn" href="serverAntigo.zip" download>Mapa RpCraft antigo</a>
+    <a class="btn" href="" download>Mapa RpCraft Atual</a>
+  </section>
   <!-- ANOTAÇÕES -->
   <section>
     <h2>Addons</h2>
     <div class="grid">
       <div class="note">💰 Economy+</div>
-      <div class="note">💾 Draveta de armazenamento</div>
+      <div class="note"> Moveis</div>
       <div class="note">🌟 Essentials</div>
       <div class="note">⚔️ Complemento de armas</div>
       <div class="note">🌾 Farming post</div>
-      <div class="note">💻 Realm management tool</div>
-      
+      <div class="note">💻 Realm management tool</div>  
     </div>
   </section>
 </main>
